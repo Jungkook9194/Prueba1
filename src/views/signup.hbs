@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2 mt-5">
+    <form action="/signup" method="post" enctype="multipart/form-data">
+      <h1 class="text-center">Create Account</h1>
+      <div class="form-group">
+        <input type="text" placeholder="Ingrese sus nombre(s)" class="form-control" name="name"><br>
+
+        <input type="text" placeholder="Ingrese sus apellidos" class="form-control" name="surname"><br>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Ingrese su usuario"
+          class="form-control"
+        />
+        <br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Ingrese su contraseña"
+          class="form-control"
+        />
+      </div>
+      <input type="file" name="image" id="image">
+      <div class="text-danger">{{#if signupMessage}}
+        {{signupMessage}}
+      {{/if}}</div>
+      <br>
+      <button
+        type="submit"
+        class="btn btn-success form-control"
+      >Ingresar</button>
+    </form>
+  </div>
+</div>

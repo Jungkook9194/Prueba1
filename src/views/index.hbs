@@ -1,0 +1,50 @@
+<div class="col-md-8 offset-md-2">
+    <div class="card">
+    <div class="card-header">
+        <h3 class="card-tittle">
+            <i class="far fa-image"></i> Subir Imagen
+        </h3>
+    </div>
+    <div class="card-body">
+        <form action="/images" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="formFile" class="form-label mt-4">Suba una imagen </label>
+                <input type="file" id="formFile" name="image">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="text" name="title" class="form-control" placeholder="Insertar Titulo" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <textarea name="description" id="" rows="2" class="form-control" placeholder="Inserte Comentario" required></textarea>
+            </div>
+            <br>
+            <div class="form-group">
+                <button class="btn btn-success">
+                    <i class="fa fa-upload"></i> Carga imagen
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card mt-2">
+    <div class="card-header">
+        <h3><i class="far fa-images"></i>Subidas Recientes</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {{#each images}}
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <a href="/images/{{uniqueId}}">
+                        <img src="/public/upload/{{filename}}" alt="" class="w-100 h-100 img-fluid">
+                    </a>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+</div>
+
+

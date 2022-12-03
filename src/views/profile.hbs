@@ -1,0 +1,59 @@
+{{#each ban}}
+    <img src="/public/upload/{{filename}}" alt="" width="100%" height="350px">
+{{/each}}
+
+<div class="container">
+    <div class="col-md-8 offset-md-2">
+        <form action="/banner/{{user.username}}" method="post" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <button type="submit">Cargar</button>
+        </form>
+    </div>
+</div>
+<br>
+<div class="card-body col-md-8 offset-md-2">
+    <h3>Usuario:</h3>
+    <h4>{{user.username}}</h4>
+    <center>
+        <img src="/public/upload/{{user.filename}}" style="height:300px;" alt="a" class="img-fluid rounded-circle"><br>
+    </center>
+    <br>
+    <div class="container">
+         <h3>{{user.name}}‎ {{user.surname}}</h3>
+    </div>
+    <div class="card-body">
+        <form action="/photo/{{user.username}}" method="post" enctype="multipart/form-data">
+            <br>
+            <div class="form-group">
+                <input type="text" name="title" class="form-control" placeholder="Insertar Titulo" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="file" name="image" id="image" required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success">
+                    <i class="fa fa-upload"></i> Carga imagen
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="card mt-2">
+    <div class="card-header">
+        <h3><i class="far fa-images"></i>Subidas Recientes</h3>
+    </div>
+    <div class="card-body">
+        <div class="row mt-4">
+            {{#each photo}}
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <a href="/public/upload/{{filename}}">
+	                    <img src="/public/upload/{{filename}}" class="img-fluid" style="height:250px; width:250px">
+                    </a>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+</div>
+</div>
+

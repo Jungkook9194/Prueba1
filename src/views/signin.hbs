@@ -1,0 +1,38 @@
+
+<div class="row">
+  <div class="card-body col-md-8 offset-md-2">
+    <form action="/signin" method="post">
+      <div class="form-group">
+        <div class="rown">
+          <div>
+            <h1 class="text-center">Inicio de Sesion</h1>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Ingrese su usuario"
+              class="form-control"
+            /><br />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Ingrese su contraseña"
+              class="form-control"
+            /><br />
+            
+            <p class="text-danger">
+                {{#if signinMessage}}
+                    {{signinMessage}}
+                {{/if}}
+            </p>
+            <button
+              type="submit"
+              class="form-control btn-success"
+            >Ingresar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
