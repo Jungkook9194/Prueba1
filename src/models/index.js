@@ -3,5 +3,4 @@ module.exports = {
     comments: require('./comment'),
     users: require('./user'),
     upload : require('./upload'),
-    banner : require('./banner')
 };

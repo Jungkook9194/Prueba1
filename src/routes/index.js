@@ -6,8 +6,7 @@ const signin = require('../controllers/signin')
 const signup = require('../controllers/signup')
 const logout = require('../controllers/logout')
 const photo = require('../controllers/photo')
-const banner1 = require('../controllers/banner')
-const {upload,users,banner} = require('../models/index')
+const {upload,users} = require('../models/index')
 
 
 module.exports = app=>{
@@ -35,13 +34,10 @@ module.exports = app=>{
     router.get('/profile/:username',isAuthenticated,async(req,res,next)=>{
         const use = await users.findOne({username:{$regex:req.params.username}})
         const photo = await upload.find({username_id:use._id})
-        const ban = await banner.find({username_id:use._id})
         console.log(photo)
-        console.log(ban)
-        res.render('profile',{photo:photo,ban:ban})
+        res.render('profile',{photo:photo})
     })
     router.post('/photo/:username',photo.photo)
-    router.post('/banner/:username',banner1.banner)
 
     function isAuthenticated (req,res,next){
         if(req.isAuthenticated()){
@@ -49,7 +45,6 @@ module.exports = app=>{
         }
         res.redirect('/signin')
     };
-
 
 
 

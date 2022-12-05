@@ -41,10 +41,10 @@ module.exports = app =>{
         next()
     })
     
-
+    app.use('/public',express.static(path.join(__dirname,'../public')))
     routes(app);
 
-    app.use('/public',express.static(path.join(__dirname,'../public')))
+    
 
     if('development' === app.get('env')){
         app.use(errorHandler)

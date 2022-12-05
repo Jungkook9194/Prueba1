@@ -8,6 +8,7 @@ const { error } = require("console");
 
 crtl.photo = async(req,res,next) =>{
     const use = await users.findOne({username:{$regex:req.params.username}})
+    console.log(use.username)
     const saveImage = async () => {
         const imageUrl = randomNumber();
         const images = await upload.find({ filename: imageUrl });
@@ -26,7 +27,7 @@ crtl.photo = async(req,res,next) =>{
               username_id : use._id
             });
             const imageSave = await newImg.save();
-            res.redirect('/')
+            res.redirect('/profile/'+use.username)
           } else {
             await fs.unlink(imagepath);
             res.status(500).json({ error: "Solos imagenes permitidas" });

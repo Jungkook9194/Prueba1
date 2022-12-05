@@ -1,15 +1,4 @@
-{{#each ban}}
-    <img src="/public/upload/{{filename}}" alt="" width="100%" height="350px">
-{{/each}}
 
-<div class="container">
-    <div class="col-md-8 offset-md-2">
-        <form action="/banner/{{user.username}}" method="post" enctype="multipart/form-data">
-            <input type="file" name="image">
-            <button type="submit">Cargar</button>
-        </form>
-    </div>
-</div>
 <br>
 <div class="card-body col-md-8 offset-md-2">
     <h3>Usuario:</h3>
@@ -29,12 +18,13 @@
             </div>
             <br>
             <div class="form-group">
-                <input type="file" name="image" id="image" required>
+                <input type="file" name="image" id="image" required onchange="previewImage(event, '#imgPreview')">
             </div>
             <div class="form-group">
                 <button class="btn btn-success">
                     <i class="fa fa-upload"></i> Carga imagen
                 </button>
+                <img id="imgPreview" height="200px" width="200px">
             </div>
         </form>
     </div>
@@ -56,4 +46,29 @@
 </div>
 </div>
 </div>
+<script>
+  function previewImage(event, querySelector){
+
+	//Recuperamos el input que desencadeno la acción
+	const input = event.target;
+	
+	//Recuperamos la etiqueta img donde cargaremos la imagen
+	$imgPreview = document.querySelector(querySelector);
+
+	// Verificamos si existe una imagen seleccionada
+	if(!input.files.length) return
+	
+	//Recuperamos el archivo subido
+	file = input.files[0];
+
+	//Creamos la url
+	objectURL = URL.createObjectURL(file);
+	
+	//Modificamos el atributo src de la etiqueta img
+	$imgPreview.src = objectURL;
+                
+}
+</script>
+
+
 

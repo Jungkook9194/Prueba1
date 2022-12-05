@@ -1,17 +1,19 @@
+
 <div class="row">
   <div class="col-md-8 offset-md-2 mt-5">
     <form action="/signup" method="post" enctype="multipart/form-data">
       <h1 class="text-center">Create Account</h1>
       <div class="form-group">
-        <input type="text" placeholder="Ingrese sus nombre(s)" class="form-control" name="name"><br>
+        <input type="text" placeholder="Ingrese sus nombre(s)" class="form-control" name="name" required onkeypress="return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32  )"><br>
 
-        <input type="text" placeholder="Ingrese sus apellidos" class="form-control" name="surname"><br>
+        <input type="text" placeholder="Ingrese sus apellidos" class="form-control" name="surname" required onkeypress="return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32  )"><br>
         <input
           type="text"
           name="username"
           id="username"
           placeholder="Ingrese su usuario"
           class="form-control"
+            required
         />
         <br />
         <input
@@ -20,9 +22,15 @@
           id="password"
           placeholder="Ingrese su contraseña"
           class="form-control"
+            required
         />
+        
       </div>
-      <input type="file" name="image" id="image">
+      <input type="file" name="image" id="add-new-photo" onchange="previewImage(event, '#imgPreview')" required>
+      <br>
+      <center>
+        <img id="imgPreview" height="300px" width="300px">
+      </center>
       <div class="text-danger">{{#if signupMessage}}
         {{signupMessage}}
       {{/if}}</div>
@@ -34,3 +42,27 @@
     </form>
   </div>
 </div>
+
+<script>
+  function previewImage(event, querySelector){
+
+	//Recuperamos el input que desencadeno la acción
+	const input = event.target;
+	
+	//Recuperamos la etiqueta img donde cargaremos la imagen
+	$imgPreview = document.querySelector(querySelector);
+
+	// Verificamos si existe una imagen seleccionada
+	if(!input.files.length) return
+	
+	//Recuperamos el archivo subido
+	file = input.files[0];
+
+	//Creamos la url
+	objectURL = URL.createObjectURL(file);
+	
+	//Modificamos el atributo src de la etiqueta img
+	$imgPreview.src = objectURL;
+                
+}
+</script>
