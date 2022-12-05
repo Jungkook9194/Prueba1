@@ -62,7 +62,6 @@ crtl.coment = async (req, res) => {
   const img = await image.findOne({filename:{$regex:req.params.image_id}})
   if(img){
     const newComment = new comments(req.body)
-    newComment.gravatar= md5(newComment.email)
      newComment.image_id = img._id;
      await newComment.save();
      res.redirect('/images/'+img.uniqueId)
